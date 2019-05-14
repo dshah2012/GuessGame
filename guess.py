@@ -29,6 +29,7 @@ def startPlay():
 	check=True
 	tempBadGuess = 0
 	missedLetters=0
+	status=""
 	print("** The great guessing game **")
 	print("Current Word ",randWord)
 	checkGuess=False
@@ -41,21 +42,25 @@ def startPlay():
 			checkGuess=guess(randWord)
 			if(checkGuess):
 				check=not check	
+				status="Success"
 			else:
 				tempBadGuess=tempBadGuess+1;
 		elif(choice=='t'):
-			print("In t")
+			print("The word is ",randWord)
+			check=not check
+			status="Gave up"
 		elif(choice=='l'):
 			guessString,missedLetters=showletters(randWord,guessString,missedLetters)
 			if(guessString.count('-')==0):
 				check=not check
+				status="Success"
 		elif(choice=='q'):
 			print("Thank you for Playing\n")
 			check=False
 
 	if(check==False):
 		#print(" numberOfWords ",numberOfWords ," randWord ",randWord," tempBadGuess ",tempBadGuess, " missedLetters ",missedLetters)
-		temp=[numberOfWords,randWord,tempBadGuess,missedLetters]
+		temp=[numberOfWords,randWord,status,tempBadGuess,missedLetters]
 		finalresult.append(temp)
 		return check
 	
@@ -79,7 +84,7 @@ def showletters(randWord,guessString,missedLetters):
 	
 		
 def guess(randWord):
-	guessWord=input("Enter the Choice \n")
+	guessWord=input("Enter the Word \n")
 	if(guessWord==randWord):
 		print("You are Brillant")
 		return  True;
@@ -105,6 +110,6 @@ if __name__=="__main__":
 	if(not ch):
 		for itemslist in finalresult:
 				#print(itemslist)
-				print(itemslist[0],"		",itemslist[1],"				",itemslist[2],"			",itemslist[3])
+				print(itemslist[0],"		",itemslist[1],"	",itemslist[2],"		",itemslist[3],"			",itemslist[4])
 				
 		
