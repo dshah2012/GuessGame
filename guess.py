@@ -53,8 +53,8 @@ def startPlay():
 	#print(words)
 	global finalScore
 	score=0
-	#randWord=random.choice(words)
-	randWord="dipt"
+	randWord=random.choice(words)
+	#randWord="defi"
 	global numberOfWords
 	numberOfWords=numberOfWords+1
 	check=True
