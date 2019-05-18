@@ -1,51 +1,52 @@
 import random
 import game
+import stringDatabase;
 
 words=[]
 finalresult=[]
 finalobjects=[]
 numberOfWords=0
 finalScore=[]
-tempGame = game.game()
+
+strData = stringDatabase.stringDatabase()
+
 wordsFrequency={
-	'a' : 8.17,
-	'b' : 1.49,
-	'c' : 2.78,
-	'd' : 4.25,
-	'e' : 12.70,
-	'f' : 2.23,
-	'g' : 2.02,
-	'h' : 6.09,
-	'i' : 6.97,
-	'j' : 0.15,
-	'k' : 0.77,
-	'l' : 4.03,
-	'm' : 2.41,
-	'n' : 6.75,
-	'o' : 7.51,
-	'p' : 1.93,
-	'q' : 0.10,
-	'r' : 5.99,
-	's' : 6.33,
-	't' : 9.06,
-	'u' : 2.76,
-	'v' : 0.98,
-	'w' : 2.36,
-	'x' : 0.15,
-	'y' : 1.97,
-	'z' : 0.07
+		'a' : 8.17,
+		'b' : 1.49,
+		'c' : 2.78,
+		'd' : 4.25,
+		'e' : 12.70,
+		'f' : 2.23,
+		'g' : 2.02,
+		'h' : 6.09,
+		'i' : 6.97,
+		'j' : 0.15,
+		'k' : 0.77,
+		'l' : 4.03,
+		'm' : 2.41,
+		'n' : 6.75,
+		'o' : 7.51,
+		'p' : 1.93,
+		'q' : 0.10,
+		'r' : 5.99,
+		's' : 6.33,
+		't' : 9.06,
+		'u' : 2.76,
+		'v' : 0.98,
+		'w' : 2.36,
+		'x' : 0.15,
+		'y' : 1.97,
+		'z' : 0.07
 
 
-	}
+		}
 
 
+class guess():
 
-class guess:
 
 	
-	
-
-	def readWords(self):
+	'''def readWords(self):
 		"""
 			Loading the Words into the List
 		"""
@@ -54,12 +55,15 @@ class guess:
 			contents = f.read().replace('\n', ' ')
 			global words
 			words=contents.split(" ")
-
-	def startPlay(self):
+			'''
+			
+	def startPlay(self,contents):
 		"""
 			Game Begins with the Random Word 
 		
 		"""
+		global words
+		words=contents.split(" ")
 		#print(words)
 		global finalScore
 		score=0
@@ -104,12 +108,14 @@ class guess:
 				guessString,missedLetters=self.showletters(randWord,guessString,missedLetters)
 				if(guessString.count('-')==0):
 					check=not check
+					score=0
 					status="Success"
 			elif(choice=='q'):
 				print("Thank you for Playing\n")
 				check=False
 
 		if(check==False):
+			tempGame = game.game()
 			#print(" numberOfWords ",numberOfWords ," randWord ",randWord," tempBadGuess ",tempBadGuess, " missedLetters ",missedLetters)
 			finalScore.append(score)
 			tempGameEntry=tempGame.storeValues(numberOfWords,randWord,status,tempBadGuess,missedLetters,score)
@@ -161,7 +167,7 @@ class guess:
 			
 			
 			
-	def display(self,ch):
+	'''def display(self,ch):
 		"""
 		Display the final Result on the Console
 		"""
@@ -174,7 +180,7 @@ class guess:
 					print(itemslist[0],"		",itemslist[1],"	",itemslist[2],"		",itemslist[3],"			",itemslist[4],"		",itemslist[5])
 
 		finalAccumulatedScore = sum(finalScore)/len(finalScore)
-		print("Final Score: ",finalAccumulatedScore)			
+		print("Final Score: ",finalAccumulatedScore)	'''		
 			
 if __name__=="__main__":
 	"""
@@ -182,20 +188,20 @@ if __name__=="__main__":
 	Display the contents
 	"""
 	guessob=guess()
-	guessob.readWords()
-	ch=guessob.startPlay()
+	#guessob.readWords()
+	contents=strData.readWords()
+	ch=guessob.startPlay(contents)
 	quit=input("You want to play again(Y/N) \n")
 	if(quit=='y' or quit=='Y'):
 		ch=True;
 	while(ch):
-		ch=guessob.startPlay()
+		ch=guessob.startPlay(contents)
 		quit=input("You want to play again(Y/N) \n")
 		if(quit=='y' or quit=='Y'):
 			ch=True
-	
-	tt=game.game()
-	tt.printallObjects(finalobjects,ch)
-	guessob.display(ch)
+	tempGame = game.game()
+	tempGame.printallObjects(finalobjects,ch)
+	#guessob.display(ch)
 	
 				
 		
