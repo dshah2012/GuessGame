@@ -220,7 +220,7 @@ if __name__=="__main__":
 		if(quit=='y' or quit=='Y'):
 			ch=True
 	tempGame = game.game()
-	tempGame.printallObjects(finalobjects,ch)
+	tempGame.printallObjects(finalobjects,ch,finalScore)
 	#guessob.display(ch)
 	
 				

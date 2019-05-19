@@ -19,7 +19,7 @@ class game:
 		self.score = indiscore
 		return self
 		
-	def printallObjects(self,finalList,ch):
+	def printallObjects(self,finalList,ch,finalScore):
 		'''
 			Printing All the Game Inforamtion that is being Played .
 			
@@ -31,6 +31,9 @@ class game:
 			for itemslist in finalList:
 				#print(itemslist)
 				print(itemslist.numberofwords,"		",itemslist.randWord,"	",itemslist.status,"		",itemslist.tempBadGuess,"			",itemslist.missedLetters,"		",itemslist.score)
+		finalAccumulatedScore = sum(finalScore)/len(finalScore)
+		print("Final Score: ",finalAccumulatedScore)
+	
 
 		
 	
