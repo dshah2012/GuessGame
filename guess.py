@@ -42,8 +42,11 @@ wordsFrequency={
 		}
 
 
-class guess():
 
+class guess():
+	'''
+		Class Guess To play the Game
+	'''
 
 	
 	'''def readWords(self):
@@ -60,7 +63,7 @@ class guess():
 	def startPlay(self,contents):
 		"""
 			Game Begins with the Random Word 
-		
+			User has the many choices such as Guess letter Give up and quit.
 		"""
 		global words
 		words=contents.split(" ")
@@ -83,9 +86,6 @@ class guess():
 		while(check):
 			print("Current Guess: ",guessString)
 			choice=input("g = guess, t = tell me, l for a letter, and q to quit \n")
-			#if(choice != 'g' or choice != 't' or choice != 'l' or choice != 'q'):
-		#		print("please put the correct input")
-		#		continue
 			if(choice=='g'):
 				checkGuess=self.guessingWord(randWord)
 				if(checkGuess):
@@ -111,6 +111,9 @@ class guess():
 					score=0
 					status="Success"
 			elif(choice=='q'):
+				if(guessString.count('-')==4):
+					status="Gave up"
+					score,_=self.calculateScore(guessString,choice,randWord)
 				print("Thank you for Playing\n")
 				check=False
 
@@ -126,6 +129,12 @@ class guess():
 		
 			
 	def showletters(self,randWord,guessString,missedLetters):
+		'''
+			Check for Letters Suggested in the Guess Word If yes then the
+			Letter is being placed in the string.
+			
+		'''
+	
 		letter=input("Enter the Letter\n")
 		number=randWord.count(letter)
 		print("you found ",number ," letter \n")
@@ -140,6 +149,13 @@ class guess():
 		return guessString,missedLetters
 				
 	def guessingWord(self,randWord):
+		'''
+			Checking the Word that is Gussed with the Real word 
+			If success return True
+			else
+			False
+			
+		'''
 		guessWord=input("Enter the Word \n")
 		if(guessWord==randWord):
 			print("You are Brillant")
@@ -150,6 +166,10 @@ class guess():
 
 			
 	def calculateScore(self,guessString,choice,randWord):
+	
+		'''
+			To calculate Score
+		'''
 		
 		tempscore=0
 		numberofletGuessed=0
@@ -158,7 +178,7 @@ class guess():
 				tempscore=tempscore+wordsFrequency.get(randWord[i])
 			else:
 				numberofletGuessed = numberofletGuessed + 1
-		if(choice == 't'):
+		if(choice == 't' or choice == 'q'):
 			tempscore = -tempscore
 		elif(choice == 'g'):
 			tempscore = tempscore

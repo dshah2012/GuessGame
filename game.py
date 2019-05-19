@@ -7,6 +7,10 @@ class game:
 	score=0		
 		
 	def storeValues(self,numberofword,randword,stat,badGuess,missedletters,indiscore):
+		'''
+			Storing Each Game Information 
+		
+		'''
 		self.numberofwords = numberofword
 		self.randWord = randword
 		self.status = stat
@@ -16,6 +20,10 @@ class game:
 		return self
 		
 	def printallObjects(self,finalList,ch):
+		'''
+			Printing All the Game Inforamtion that is being Played .
+			
+		'''
 		print("Game		Word	 Status		Bad Guesses		Missed Letters		Score \n")
 		print("\n")
 		print("----		----     -----		-----------		--------------		-----"	)
